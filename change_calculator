@@ -1,0 +1,35 @@
+#USD are confusing
+#a simple change calculator for my scripting class
+
+change = int(input())
+
+if change <= 0:
+    print('No change')
+elif change // 100 > 1:
+    print( change // 100, 'Dollars')
+elif change // 100 ==1:
+    print(change // 100, 'Dollar')
+change = change % 100
+
+if change // 25 ==1:
+    print(change//25, 'Quarter')
+elif change// 25 >1:
+    print( change//25, 'Quarters')
+change = change % 25
+
+if change // 10 == 1:
+    print(change //10, 'Dime')
+elif change // 10 > 1:
+    print(change//10, 'Dimes')
+change = change% 10
+
+if change//5 ==1:
+    print(change//5, 'Nickel')
+elif change//5 > 1:
+    print(change//5, 'Nickels')
+change = change% 5
+
+if change == 1:
+    print (change, 'Penny')
+elif change > 1:
+    print(change, 'Pennies')
