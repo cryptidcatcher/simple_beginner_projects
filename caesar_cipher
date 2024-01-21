@@ -1,0 +1,16 @@
+import string
+# not my original code, followed along from Reddit w some edits, just practice
+plaintext = input('Message to code:')
+x = input()
+shift = int(x)
+
+
+def caesar(plaintext, shift):
+    alphabet = string.ascii_lowercase
+    shifted_alphabet = alphabet[shift:] + alphabet[:shift]
+    table = str.maketrans(alphabet, shifted_alphabet)
+    coded = plaintext.translate(table)
+    return coded
+# remember str and string are different!!!
+# I always get stuck for so long on the tiniest bugs :(
+print(caesar(plaintext, shift))
