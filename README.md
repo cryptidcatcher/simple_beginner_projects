@@ -1,1 +1,1 @@
-Mostly just using this to track my progress and prokects I do for my scripting class.
+Mostly just using this to track my progress and projects I do for my scripting class.
