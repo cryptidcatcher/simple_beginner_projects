@@ -1,0 +1,13 @@
+my_list = (input()).split()
+my_list = [eval(i) for i in my_list]
+ascending = sorted(my_list)
+
+length = len(ascending)
+while length > 0:
+    for i in ascending:
+        if i <= -1:
+            ascending.remove(i)
+        length -=1
+
+for i in ascending:
+    print(i, end = ' ')
