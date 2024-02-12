@@ -1,0 +1,11 @@
+numbers = []
+user_input = input()
+user_num = user_input.split()
+numbers.append(user_num)
+numbers = [eval(i) for i in numbers[0]]
+
+
+largest_list = sorted(numbers)
+largest = largest_list[-1]
+average = int(sum(numbers)/len(numbers))
+print(average, largest)
