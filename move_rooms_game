@@ -1,0 +1,38 @@
+rooms = {
+        'Great Hall': {'South': 'Bedroom'},
+        'Bedroom': {'North': 'Great Hall', 'East': 'Cellar'},
+        'Cellar': {'West': 'Bedroom'}
+    }
+direction = input('Which way do you go?')
+start_room = 'Great Hall'
+room = start_room
+
+if direction == 'exit':
+    room = 'exit'
+while direction != 'exit':
+    if room in rooms:
+        if room == 'Great Hall' and direction == 'South':
+            room = 'Bedroom'
+            print('You are in the', room, 'Which way now?')
+            direction = input()
+        elif room == 'Bedroom':
+            if direction == 'North':
+                room = 'Great Hall'
+                print('You are in the', room, 'Which way now?')
+                direction = input()
+            elif direction == 'East':
+                room = 'Cellar'
+                print('You are in the', room, 'Which way now?')
+                direction = input()
+        elif room == 'Cellar' and direction == 'West':
+            room = 'Bedroom'
+            print('You are in the', room, 'Which way now?')
+            direction = input()
+        else:
+            print('Error- invalid direction')
+            break
+    else:
+        print('Error- invalid room')
+        break
+
+print('You are in', room)
