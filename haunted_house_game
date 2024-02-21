@@ -1,0 +1,208 @@
+
+start_room = 'Foyer'
+room = start_room
+inventory = []
+start_item = '... nothing here'
+item = start_item
+
+
+def show_status():
+    print('You are in the', room, 'you currently have', inventory)
+    print('In this room, there is a/an', item)
+
+
+def show_instructions():
+    #print a main menu and the commands
+    print("Haunted House Text Game")
+    print("Collect all 6 items to befriend the spirits, or face your demise...")
+    print("Move commands: South, North, East, West")
+    print("Add to Inventory: get 'item name'")
+    print("You're currently in the Foyer")
+
+
+def main():
+    global room
+    global item
+    rooms = {
+        'Foyer': {'East': 'Living Room'},
+        'Living Room': {'West': 'Foyer', 'North': 'Bedroom', 'East': 'Kitchen', 'South': 'Study'},
+        'Bedroom': {'South': 'Living Room', 'East': 'Bathroom'},
+        'Bathroom': {'East': 'Bedroom'},
+        'Kitchen': {'West': 'Living Room', 'North': 'Pantry'},
+        'Pantry': {'South': 'Kitchen'},
+        'Study': {'North': 'Living Room', 'East': 'Basement'},
+        'Basement': {'West': 'Study'}
+    }
+    direction = input('Which way do you go?')
+
+    
+    def get_item():
+        global item
+        if room == 'Foyer' or room == 'Basement':
+            item = '...nothing here'
+            show_status()
+        elif room == 'Living Room':
+            item = 'Ouija Board'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Ouija Board':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+        elif room == 'Bedroom':
+            item = 'Pendulum'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Pendulum':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+        elif room == 'Bathroom':
+            item = 'Candle'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Candle':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+        elif room == 'Kitchen':
+            item = 'Knife'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Knife':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+        elif room == 'Pantry':
+            item = 'Salt'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Salt':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+        elif room == 'Study':
+            item = 'Paranormal Book'
+            if item in inventory:
+                show_status()
+            else:
+                show_status()
+                player_command = input()
+                if player_command == 'get Paranormal Book':
+                    inventory.append(item)
+                    print('Got', item)
+                else:
+                    print('invalid command')
+
+    if direction == 'exit':
+        room = 'exit'
+    while direction != 'exit':
+        if room in rooms:
+            if room == 'Foyer' and direction == 'East':
+                room = 'Living Room'
+                get_item()
+                direction = input('Which way now?')
+            elif room == 'Living Room':
+                if direction == 'West':
+                    room = 'Foyer'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'North':
+                    room = 'Bedroom'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'East':
+                    room = 'Kitchen'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'South':
+                    room = 'Study'
+                    get_item()
+                    direction = input('Which way now?')
+            elif room == 'Bedroom':
+                if direction == 'South':
+                    room = 'Living Room'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'East':
+                    room = 'Bathroom'
+                    get_item()
+                    direction = input('Which way now?')
+            elif room == 'Bathroom' and direction == 'West':
+                room = 'Bedroom'
+                get_item()
+                direction = input('Which way now?')
+            elif room == 'Kitchen':
+                if direction == 'West':
+                    room = 'Living Room'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'North':
+                    room = 'Pantry'
+                    get_item()
+                    direction = input('Which way now?')
+            elif room == 'Pantry' and direction == 'South':
+                room = 'Kitchen'
+                get_item()
+                direction = input('Which way now?')
+            elif room == 'Study':
+                if direction == 'North':
+                    room = 'Living Room'
+                    get_item()
+                    direction = input('Which way now?')
+                elif direction == 'East':
+                    room = 'Basement'
+            elif room == 'Basement':
+                print("There's a hoard of ghosts! Are you sure you want to proceed?")
+                answer = input('Y/N')
+                if answer == 'Y':
+                    if len(inventory) >= 5:
+                        print("You've completed the ritual and befriended the spirits.")
+                        print("Thanks for playing. You win!")
+                        break
+                    else:
+                        print("Oh no, you were too cocky... the ritual failed!")
+                        print("The ghosts have possessed you. You lose.")
+                        print("Thanks for playing. Better luck next time!")
+                        break
+                elif answer == 'N':
+                    print('Safe choice.')
+                    direction = input('Which way now?')
+                    if direction == 'West':
+                        room = 'Study'
+                        get_item()
+                        direction = input('Which way now?')
+                else:
+                    print("Invalid answer")
+            else:
+                print('Error- invalid direction')
+                break
+        else:
+            print('Error- invalid room')
+            break
+
+    print('You are in', room)
+
+
+show_instructions()
+main()
